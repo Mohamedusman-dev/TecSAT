@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Users, Building2 } from 'lucide-react';
 
 const stats = [
-  { label: 'Projects Completed', value: 1250, suffix: '+', icon: <Building2 className="text-primary-500" /> },
+  { label: 'Projects Completed', value: 50, suffix: '+', icon: <Building2 className="text-primary-500" /> },
   { label: 'Safety Compliance', value: 100, suffix: '%', icon: <ShieldCheck className="text-primary-500" /> },
-  { label: 'Happy Clients', value: 500, suffix: '+', icon: <Users className="text-primary-500" /> },
+  { label: 'Happy Clients', value: 30, suffix: '+', icon: <Users className="text-primary-500" /> },
 ];
 
 const Hero = () => {

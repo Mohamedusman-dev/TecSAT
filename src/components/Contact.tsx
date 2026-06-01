@@ -47,7 +47,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-secondary-dark dark:text-white">Call Us</h4>
-                  <p className="text-secondary-gray dark:text-gray-400">+1 (555) 123-4567</p>
+                  <p className="text-secondary-gray dark:text-gray-400">+91 81222 81202</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -56,7 +56,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-secondary-dark dark:text-white">Email Us</h4>
-                  <p className="text-secondary-gray dark:text-gray-400">info@tecsat-audits.com</p>
+                  <p className="text-secondary-gray dark:text-gray-400">info@tecsat.in</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -65,7 +65,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-secondary-dark dark:text-white">Visit Us</h4>
-                  <p className="text-secondary-gray dark:text-gray-400">123 Engineering Plaza, Tech City, ST 54321</p>
+                  <p className="text-secondary-gray dark:text-gray-400">No: 07/103A, Venugopal Nagar, Ettiyapuram, West Tambaram,
+
+Chennai - 600044</p>
                 </div>
               </div>
             </div>
