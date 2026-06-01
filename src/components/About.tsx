@@ -21,7 +21,7 @@ const About = () => {
               Excellence in Engineering & Facility Audits
             </h3>
             <p className="mt-6 text-secondary-gray dark:text-gray-400 leading-relaxed">
-            TecSAT Engineering Services is a multidisciplinary engineering company specializing in facility audits, MEP systems, HVAC solutions, civil works, waterproofing, fabrication, renovations, and technical support services. We help clients enhance building performance, improve operational efficiency, ensure compliance, and extend asset life through professional engineering expertise and detailed assessments.
+            tecSAT Engineering Services is a multidisciplinary engineering company specializing in facility audits, MEP systems, HVAC solutions, civil works, waterproofing, fabrication, renovations, and technical support services. We help clients enhance building performance, improve operational efficiency, ensure compliance, and extend asset life through professional engineering expertise and detailed assessments.
             </p>
             
             <div className="mt-8 grid sm:grid-cols-1 gap-4">

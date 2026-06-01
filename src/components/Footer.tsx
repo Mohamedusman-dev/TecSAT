@@ -1,33 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Share2, 
   Facebook, 
   Instagram, 
   Youtube, 
-  ArrowUpRight 
+  ArrowUpRight,
+  Check
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const shareData = {
+      title: 'tecSAT Engineering Services',
+      text: 'Comprehensive Engineering Services & Facility Audit Solutions',
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch (err) {
+      console.error('Error sharing:', err);
+      // Fallback to clipboard if share fails or is cancelled
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   const socialLinks = [
     { 
       Icon: Share2, 
       label: 'Share', 
-      href: '#' // Generic share usually triggers a navigator.share or a modal
+      href: '#',
+      onClick: handleShare,
+      isShare: true
     },
     { 
       Icon: Facebook, 
       label: 'Facebook', 
-      href: 'https://www.facebook.com/tecSAT.engineeringservices/' 
+      href: 'https://www.facebook.com/tecSAT.engineeringservices/',
+      isShare: false
     },
     { 
       Icon: Instagram, 
       label: 'Instagram', 
-      href: 'https://www.instagram.com/tecsat_engineeringservices/' 
+      href: 'https://www.instagram.com/tecsat_engineeringservices/',
+      isShare: false
     },
     { 
       Icon: Youtube, 
       label: 'YouTube', 
-      href: 'https://www.youtube.com/@tecSATengineeringservices' 
+      href: 'https://www.youtube.com/@tecSATengineeringservices',
+      isShare: false
     }
   ];
 
@@ -41,17 +75,54 @@ const Footer = () => {
               Providing integrated Engineering Services, Facility Audits, HVAC, MEP, Waterproofing, Fabrication, and Renovation Solutions to enhance building performance, safety, and reliability.
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map(({ Icon, label, href }, i) => (
-                <a 
-                  key={i} 
-                  href={href}
-                  target={href !== '#' ? "_blank" : undefined}
-                  rel={href !== '#' ? "noopener noreferrer" : undefined}
-                  aria-label={label}
-                  className="w-10 h-10 bg-white/5 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-all hover:scale-110"
-                >
-                  <Icon size={20} />
-                </a>
+              {socialLinks.map(({ Icon, label, href, onClick, isShare }, i) => (
+                <div key={i} className="relative">
+                  <a 
+                    href={href}
+                    onClick={onClick}
+                    target={!isShare ? "_blank" : undefined}
+                    rel={!isShare ? "noopener noreferrer" : undefined}
+                    aria-label={label}
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110 ${
+                      isShare && copied 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-white/5 hover:bg-primary-600 text-white'
+                    }`}
+                  >
+                    <AnimatePresence mode="wait">
+                      {isShare && copied ? (
+                        <motion.div
+                          key="check"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                        >
+                          <Check size={20} />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="icon"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                        >
+                          <Icon size={20} />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </a>
+                  
+                  {isShare && copied && (
+                    <motion.span
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute -top-10 left-1/2 -translate-x-1/2 bg-green-500 text-white text-[10px] font-bold py-1 px-2 rounded whitespace-nowrap"
+                    >
+                      URL Copied!
+                    </motion.span>
+                  )}
+                </div>
               ))}
             </div>
           </div>

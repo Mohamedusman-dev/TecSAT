@@ -19,7 +19,7 @@ const steps = [
   },
   {
     number: "04",
-    title: "Quality Verification",
+    title: "Inspection & Validation",
     description: "All works undergo inspection, testing, and performance checks to ensure compliance and reliability."
   },
   {
