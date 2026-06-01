@@ -65,9 +65,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-secondary-dark dark:text-white">Visit Us</h4>
-                  <p className="text-secondary-gray dark:text-gray-400">No: 07/103A, Venugopal Nagar, Ettiyapuram, West Tambaram,
-
-Chennai - 600044</p>
+                  <p className="text-secondary-gray dark:text-gray-400">Chennai, Tamil Nadu, India</p>
                 </div>
               </div>
             </div>
@@ -118,7 +116,7 @@ Chennai - 600044</p>
                   <input
                     {...register('phone')}
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+91 00000 00000"
                   />
                   {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
                 </div>

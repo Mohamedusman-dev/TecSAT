@@ -1,43 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building, Zap, Wind, ShieldAlert, ClipboardCheck, HardHat } from 'lucide-react';
+import { 
+  Building2, 
+  Zap, 
+  Wind, 
+  Droplets, 
+  LayoutTemplate, 
+  Settings2,
+  SearchCheck
+} from 'lucide-react';
 
 const services = [
   {
-    icon: <Building />,
-    title: "Building Condition Audit",
-    description: "Comprehensive structural and architectural assessment to identify defects and maintenance needs.",
-    slug: "building-audit"
+    icon: <Building2 />,
+    title: "Civil & Renovation Works",
+    description: "Building repairs, structural improvements, office renovations, fit-outs, and infrastructure enhancement projects."
   },
   {
-    icon: <Zap />,
-    title: "Electrical Safety Audit",
-    description: "In-depth inspection of electrical systems to prevent hazards and ensure compliance with safety standards.",
-    slug: "electrical-audit"
+    icon: <LayoutTemplate />,
+    title: "MEP Engineering Solutions",
+    description: "Design review, installation support, troubleshooting, upgrades, and maintenance of Mechanical, Electrical, and Plumbing systems."
   },
   {
     icon: <Wind />,
-    title: "HVAC System Inspection",
-    description: "Performance evaluation of heating, ventilation, and air conditioning systems for energy efficiency.",
-    slug: "hvac-inspection"
+    title: "HVAC Projects & Ducting Works",
+    description: "Air conditioning installations, duct fabrication, ventilation systems, modifications, balancing, and performance optimization."
   },
   {
-    icon: <ShieldAlert />,
-    title: "Fire & Life Safety Audit",
-    description: "Rigorous testing of fire suppression systems, alarms, and emergency exit strategies.",
-    slug: "fire-safety"
+    icon: <Zap />,
+    title: "Fabrication & Industrial Works",
+    description: "Custom fabrication of MS, SS, GI structures, platforms, supports, handrails, equipment bases, and utility systems.",
+    slug: "mep-services"
   },
   {
-    icon: <ClipboardCheck />,
-    title: "Compliance Management",
-    description: "Assisting facilities in meeting local and international regulatory requirements and certifications.",
-    slug: "compliance"
+    icon: <Droplets />,
+    title: "Waterproofing Solutions",
+    description: "Inspection, diagnosis, and treatment of leakage issues for roofs, terraces, basements, wet areas, and external structures.",
+    slug: "waterproofing"
   },
   {
-    icon: <HardHat />,
-    title: "Structural Assessment",
-    description: "Non-destructive testing and analysis of load-bearing elements for long-term stability.",
-    slug: "structural"
+    icon: <Settings2 />,
+    title: "Facility Engineering Support Services",
+    description: "Technical consultancy, preventive maintenance planning, vendor coordination, project supervision, and operational support.",
+    slug: "engineering-support"
   }
 ];
 
@@ -46,14 +51,18 @@ const Services = () => {
     <section id="services" className="py-24 bg-gray-50 dark:bg-gray-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary-600 font-bold uppercase tracking-widest text-sm"
+            className="flex items-center justify-center space-x-2 mb-4"
           >
-            Our Expertise
-          </motion.h2>
+            <span className="h-px w-8 bg-primary-500"></span>
+            <h2 className="text-primary-600 font-bold uppercase tracking-widest text-sm">
+              Our Core Expertise
+            </h2>
+            <span className="h-px w-8 bg-primary-500"></span>
+          </motion.div>
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -61,8 +70,11 @@ const Services = () => {
             transition={{ delay: 0.1 }}
             className="mt-4 text-3xl md:text-4xl font-heading font-bold text-secondary-dark dark:text-white"
           >
-            Specialized Audit & Inspection Services
+            Engineering Services & Facility Audit Solutions
           </motion.h3>
+          <p className="mt-4 text-secondary-gray dark:text-gray-400">
+            From comprehensive facility audits to engineering execution, we deliver end-to-end solutions that enhance safety, performance, and operational efficiency.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -80,15 +92,36 @@ const Services = () => {
                 {React.cloneElement(service.icon as React.ReactElement, { size: 28 })}
               </div>
               <h4 className="text-xl font-bold text-secondary-dark dark:text-white mb-4">{service.title}</h4>
-              <p className="text-secondary-gray dark:text-gray-400 mb-6 line-clamp-3">
+              <p className="text-secondary-gray dark:text-gray-400 mb-6 leading-relaxed">
                 {service.description}
               </p>
-              <button className="text-primary-600 font-bold flex items-center group-hover:translate-x-2 transition-transform">
-                Learn More <span className="ml-2">→</span>
+              <button className="text-primary-600 font-bold flex items-center group-hover:translate-x-2 transition-transform text-sm">
+                Explore Service <span className="ml-2">→</span>
               </button>
             </motion.div>
           ))}
         </div>
+
+        {/* Audit Call to Action */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 p-8 bg-primary-600 rounded-3xl text-white flex flex-col md:flex-row items-center justify-between gap-8"
+        >
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+              <SearchCheck size={32} />
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Need a Technical Building Audit?</h4>
+              <p className="text-primary-100">Identify risks and optimize your facility's performance today.</p>
+            </div>
+          </div>
+          <a href="#contact" className="px-8 py-4 bg-white text-primary-600 font-bold rounded-xl hover:bg-primary-50 transition-colors whitespace-nowrap">
+            Book an Audit
+          </a>
+        </motion.div>
       </div>
     </section>
   );

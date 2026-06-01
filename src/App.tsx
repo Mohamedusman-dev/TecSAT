@@ -36,7 +36,7 @@ function App() {
                 { title: 'Commercial Buildings', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600' },
                 { title: 'Hospitals', img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=600' },
                 { title: 'Industrial Facilities', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600' },
-                { title: 'Educational Institutions', img: 'https://images.unsplash.com/photo-1523050335392-93851179ae22?auto=format&fit=crop&q=80&w=600' },
+                { title: 'Educational Institutions', img: 'https://ik.imagekit.io/aq2gvjkip/internetfuzzy-monastery-930062_1920.jpg' },
                 { title: 'Residential Complexes', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=600' },
                 { title: 'Corporate Offices', img: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=600' }
               ].map((industry, i) => (
@@ -61,8 +61,11 @@ function App() {
         </section>
 
         <Workflow />
-        <Projects />
-        <Testimonials />
+        
+        {/* Hidden for now as per user request */}
+        {/* <Projects /> */}
+        {/* <Testimonials /> */}
+        
         <Contact />
       </main>
 
@@ -73,7 +76,7 @@ function App() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         whileHover={{ scale: 1.1 }}
-        href="https://wa.me/1234567890"
+        href="https://wa.me/8122281202"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-colors"

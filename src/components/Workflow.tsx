@@ -4,28 +4,28 @@ import { motion } from 'framer-motion';
 const steps = [
   {
     number: "01",
-    title: "Site Inspection",
-    description: "On-site visit by our certified engineers for initial data collection and visual assessment."
+    title: "Site Survey & Assessment",
+    description: "We evaluate site conditions, understand requirements, and identify project challenges."
   },
   {
     number: "02",
-    title: "Technical Assessment",
-    description: "Detailed testing using advanced diagnostic tools and non-destructive methodologies."
+    title: "Planning & Solution Development",
+    description: "We prepare technical recommendations, project plans, and cost-effective execution strategies."
   },
   {
     number: "03",
-    title: "Data Analysis",
-    description: "Processing findings through our proprietary analytical models to identify risk patterns."
+    title: "Execution & Implementation",
+    description: "We deliver HVAC, MEP, waterproofing, fabrication, civil, interior, and renovation works with quality and safety at the forefront."
   },
   {
     number: "04",
-    title: "Detailed Reporting",
-    description: "Generation of comprehensive digital reports with photographic evidence and compliance scoring."
+    title: "Quality Verification",
+    description: "All works undergo inspection, testing, and performance checks to ensure compliance and reliability."
   },
   {
     number: "05",
-    title: "Recommendations",
-    description: "Strategic maintenance planning and corrective action roadmaps for facility optimization."
+    title: "Support & Maintenance",
+    description: "We provide ongoing technical support, preventive maintenance, and facility improvement solutions."
   }
 ];
 

@@ -39,5 +39,5 @@ export interface TestimonialProps {
 export interface ProjectProps {
   imageSrc: string;
   title: string;
-  category: 'Building' | 'Electrical' | 'HVAC' | 'Safety';
+  category: 'Civil' | 'Interior' | 'HVAC' | 'Electrical' | 'Waterproofing' | 'Audit';
 }

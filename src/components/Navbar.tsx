@@ -22,7 +22,7 @@ const Navbar = () => {
     { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
+    // { name: 'Projects', href: '#projects' }, // Hidden for now
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <span className={`text-2xl font-heading font-bold ${isScrolled || isDarkMode ? 'text-primary-600' : 'text-white'}`}>
-              TecSAT
+              tecSAT
             </span>
           </div>
 
