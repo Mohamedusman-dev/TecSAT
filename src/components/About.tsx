@@ -14,7 +14,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center space-x-2 mb-4">
-              <span className="w-10 h-1.5 bg-primary-500 rounded-full"></span>
+              
               <h1 className="text-primary-600 font-bold tracking-wider text-lg md:text-xl">ABOUT tecSAT</h1>
             </div>
             <h3 className="mt-2 text-3xl md:text-4xl font-heading font-bold text-secondary-dark dark:text-white leading-tight">
@@ -87,7 +87,7 @@ const About = () => {
 
             <div className="sm:col-span-2 relative mt-6 rounded-2xl overflow-hidden h-64 group">
               <img
-                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000"
+                src="https://ik.imagekit.io/aq2gvjkip/WhatsApp%20Image%202026-06-02%20at%207.56.30%20AM.jpeg"
                 alt="Engineer at work"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

@@ -23,23 +23,11 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 text-xs font-bold uppercase tracking-widest mb-6"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
-            </span>
-            <span>Engineering & Audit Excellence</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-[1.1]"
           >
            Comprehensive <span className="text-primary-500">Engineering Services</span> & Facility <span className="text-primary-400">Audit Solutions</span>
           </motion.h1>
@@ -48,7 +36,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-6 text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed"
+            className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed"
           >
             Enhancing building performance, safety, and compliance through comprehensive engineering services and facility audit solutions.
           </motion.p>
@@ -63,7 +51,7 @@ const Hero = () => {
               href="#contact"
               className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg transition-all group shadow-lg shadow-primary-600/20"
             >
-              Start Your Project
+              Request Inspection
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </a>
             <a

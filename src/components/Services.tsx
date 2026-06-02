@@ -57,11 +57,11 @@ const Services = () => {
             viewport={{ once: true }}
             className="flex items-center justify-center space-x-2 mb-4"
           >
-            <span className="h-px w-8 bg-primary-500"></span>
+            
             <h2 className="text-primary-600 font-bold uppercase tracking-widest text-sm">
-              Our Core Expertise
+              Our Expertise
             </h2>
-            <span className="h-px w-8 bg-primary-500"></span>
+            
           </motion.div>
           <motion.h3
             initial={{ opacity: 0, y: 20 }}

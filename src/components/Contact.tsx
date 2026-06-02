@@ -73,7 +73,7 @@ const Contact = () => {
             <div className="mt-12 rounded-2xl overflow-hidden h-64 shadow-lg grayscale hover:grayscale-0 transition-all duration-500">
               <iframe
                 title="Office Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23818.763196608128!2d80.11295575!3d12.922006699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f14844aad0f%3A0xe16d3a66c4ce38d4!2sTambaram%2C%20Chennai%2C%20Tamil%20Nadu!5e1!3m2!1sen!2sin!4v1780323116079!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380908.06713917665!2d79.87898893406809!3d13.047316842861278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e1!3m2!1sen!2sin!4v1780374479600!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
