@@ -30,7 +30,6 @@ const Footer = () => {
       }
     } catch (err) {
       console.error('Error sharing:', err);
-      // Fallback to clipboard if share fails or is cancelled
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -177,8 +176,12 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
-          <p>© 2025 tecSAT Engineering Services. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="text-center md:text-left mb-4 md:mb-0">
+            <p>© 2025 tecSAT Engineering Services. All rights reserved.</p>
+            <p className="mt-1 opacity-70">Developed by Hinelix Technologies Private Limited</p>
+          </div>
+					
+          <div className="flex space-x-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>

@@ -15,7 +15,7 @@ const About = () => {
           >
             <div className="flex items-center space-x-2 mb-4">
               
-              <h1 className="text-primary-600 font-bold tracking-wider text-lg md:text-xl">ABOUT tecSAT</h1>
+              <h1 className="text-primary-600 font-bold tracking-wider text-lg md:text-xl">About tecSAT</h1>
             </div>
             <h3 className="mt-2 text-3xl md:text-4xl font-heading font-bold text-secondary-dark dark:text-white leading-tight">
               Excellence in Engineering & Facility Audits
