@@ -178,7 +178,17 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
           <div className="text-center md:text-left mb-4 md:mb-0">
             <p>© 2025 tecSAT Engineering Services. All rights reserved.</p>
-            <p className="mt-1 opacity-70">Developed by Hinelix Technologies Private Limited</p>
+            <p className="mt-1 opacity-70">
+  Developed by Hinelix Technologies Private Limited |{" "}
+  <a
+    href="https://www.hinelix.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:underline"
+  >
+    www.hinelix.com
+  </a>
+</p>
           </div>
 					
           <div className="flex space-x-6">
