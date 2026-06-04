@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '../lib/supabase';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name is required'),
@@ -16,15 +17,37 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const Contact = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactForm>({
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
   });
 
   const onSubmit = async (data: ContactForm) => {
-    console.log(data);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    alert('Message sent successfully!');
+    setSubmitError(null);
+    try {
+      const { error } = await supabase
+        .from('inquiries')
+        .insert([
+          {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            company: data.company,
+            message: data.message,
+          },
+        ]);
+
+      if (error) throw error;
+
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err: any) {
+      console.error('Error submitting form:', err);
+      setSubmitError('Failed to send inquiry. Please try again later.');
+    }
   };
 
   return (
@@ -86,77 +109,109 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-gray-50 dark:bg-gray-800/50 p-8 md:p-12 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl"
+            className="bg-gray-50 dark:bg-gray-800/50 p-8 md:p-12 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-xl relative overflow-hidden"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Full Name</label>
-                  <input
-                    {...register('name')}
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
-                    placeholder="John Doe"
-                  />
-                  {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Email Address</label>
-                  <input
-                    {...register('email')}
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
-                    placeholder="john@company.com"
-                  />
-                  {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
-                </div>
-              </div>
+            <AnimatePresence mode="wait">
+              {isSuccess ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="flex flex-col items-center justify-center h-full text-center space-y-4 py-12"
+                >
+                  <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 mb-4">
+                    <CheckCircle2 size={48} />
+                  </div>
+                  <h4 className="text-2xl font-bold text-secondary-dark dark:text-white">Inquiry Sent!</h4>
+                  <p className="text-secondary-gray dark:text-gray-400 max-w-xs">
+                    Thank you for reaching out. Our team will contact you shortly.
+                  </p>
+                  <button 
+                    onClick={() => setIsSuccess(false)}
+                    className="mt-6 text-primary-600 font-bold hover:underline"
+                  >
+                    Send another message
+                  </button>
+                </motion.div>
+              ) : (
+                <form key="form" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Full Name</label>
+                      <input
+                        {...register('name')}
+                        className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
+                        placeholder="John Doe"
+                      />
+                      {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Email Address</label>
+                      <input
+                        {...register('email')}
+                        className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
+                        placeholder="john@company.com"
+                      />
+                      {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
+                    </div>
+                  </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Phone Number</label>
-                  <input
-                    {...register('phone')}
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
-                    placeholder="+91 00000 00000"
-                  />
-                  {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Company</label>
-                  <input
-                    {...register('company')}
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
-                    placeholder="Company Name"
-                  />
-                  {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company.message}</p>}
-                </div>
-              </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Phone Number</label>
+                      <input
+                        {...register('phone')}
+                        className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
+                        placeholder="+91 00000 00000"
+                      />
+                      {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Company</label>
+                      <input
+                        {...register('company')}
+                        className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
+                        placeholder="Company Name"
+                      />
+                      {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company.message}</p>}
+                    </div>
+                  </div>
 
-              <div>
-                <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Message</label>
-                <textarea
-                  {...register('message')}
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
-                  placeholder="Tell us about your facility audit needs..."
-                ></textarea>
-                {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>}
-              </div>
+                  <div>
+                    <label className="block text-sm font-medium text-secondary-dark dark:text-gray-300 mb-2">Message</label>
+                    <textarea
+                      {...register('message')}
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 outline-none transition-all dark:text-white"
+                      placeholder="Tell us about your facility audit needs..."
+                    ></textarea>
+                    {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>}
+                  </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-70"
-              >
-                {isSubmitting ? (
-                  <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                ) : (
-                  <>
-                    <span>Send Inquiry</span>
-                    <Send size={18} />
-                  </>
-                )}
-              </button>
-            </form>
+                  {submitError && (
+                    <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-lg text-red-600 text-sm">
+                      {submitError}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    ) : (
+                      <>
+                        <span>Send Inquiry</span>
+                        <Send size={18} />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
